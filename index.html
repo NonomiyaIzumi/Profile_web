@@ -23,73 +23,49 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--dark);
+      background: #0a0812;
       color: var(--text);
       overflow-x: hidden;
     }
 
+    /* ── Animated sakura background ── */
+    #sakura-bg-anim {
+      position: fixed; inset: -4%;
+      background: url('bg_night_street.jpg') center/cover no-repeat;
+      pointer-events: none;
+      z-index: 0;
+      animation: sakura-sway 12s ease-in-out infinite;
+      will-change: transform;
+    }
+    @keyframes sakura-sway {
+      0%   { transform: scale(1.04) translate(0,    0);    }
+      25%  { transform: scale(1.06) translate(-1%,  0.5%); }
+      50%  { transform: scale(1.05) translate(0.5%, -0.5%);}
+      75%  { transform: scale(1.06) translate(1%,   0.3%); }
+      100% { transform: scale(1.04) translate(0,    0);    }
+    }
+
     /* ═══════════════════════════════════════════
        Z-INDEX STACK
-       1 — sakura trees + ground
-       2 — dark readability overlay
-       3 — petal canvas
-       4 — sections (transparent backgrounds)
-       100 — nav
+       1 — dark readability overlay
+       2 — petal canvas
+       3 — sections (transparent)
+       50 — nav
     ═══════════════════════════════════════════ */
 
-    /* ── Sakura avenue — left tree ── */
-    #sakura-left {
-      position: fixed;
-      bottom: 0;
-      left: -5%;
-      height: 96vh;
-      width: auto;
-      opacity: 0.65;
-      pointer-events: none;
-      z-index: 1;
-      filter: drop-shadow(0 0 30px rgba(255,130,175,0.35));
-    }
-
-    /* ── Sakura avenue — right tree (mirrored) ── */
-    #sakura-right {
-      position: fixed;
-      bottom: 0;
-      right: -5%;
-      height: 96vh;
-      width: auto;
-      opacity: 0.65;
-      pointer-events: none;
-      z-index: 1;
-      filter: drop-shadow(0 0 30px rgba(255,130,175,0.35));
-      transform: scaleX(-1);
-    }
-
-    /* ── Petal carpet — glowing path ── */
-    #sakura-ground {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      height: 35vh;
-      background: radial-gradient(ellipse 55% 100% at 50% 100%,
-        rgba(255,168,196,0.22) 0%,
-        rgba(255,168,196,0.08) 40%,
-        transparent 70%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* ── Dark readability overlay (sits above trees, below content) ── */
+    /* ── Dark readability overlay ── */
     #dark-overlay {
       position: fixed; inset: 0;
-      background: rgba(10, 8, 20, 0.52);
+      background: rgba(8, 6, 18, 0.55);
       pointer-events: none;
-      z-index: 2;
+      z-index: 1;
     }
 
     /* ── Petal canvas ── */
     #petal-canvas {
       position: fixed; inset: 0;
       pointer-events: none;
-      z-index: 3;
+      z-index: 2;
     }
 
     /* ── Nav ── */
@@ -160,8 +136,8 @@
     }
     .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
 
-    /* ── Sections — transparent so trees show through ── */
-    section { padding: 5rem 1rem; position: relative; z-index: 4; background: transparent; }
+    /* ── Sections — transparent so background shows through ── */
+    section { padding: 5rem 1rem; position: relative; z-index: 3; background: transparent; }
     .container { max-width: 900px; margin: 0 auto; }
     .section-title {
       font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;
@@ -325,11 +301,9 @@
 </head>
 <body>
 
-<!-- Sakura avenue: 2 trees flanking both sides, fixed to viewport -->
-<img id="sakura-left"  src="tree1.png" alt="" />
-<img id="sakura-right" src="tree3.png" alt="" />
-<div id="sakura-ground"></div>
-<!-- Dark overlay for text readability (above trees, below content) -->
+<!-- Animated sakura background -->
+<div id="sakura-bg-anim"></div>
+<!-- Dark overlay for text readability -->
 <div id="dark-overlay"></div>
 <!-- Petal canvas (falling petals animation) -->
 <canvas id="petal-canvas"></canvas>
