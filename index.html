@@ -28,55 +28,73 @@
       overflow-x: hidden;
     }
 
+    /* ═══════════════════════════════════════════
+       Z-INDEX STACK
+       1 — sakura trees + ground
+       2 — dark readability overlay
+       3 — petal canvas
+       4 — sections (transparent backgrounds)
+       100 — nav
+    ═══════════════════════════════════════════ */
+
     /* ── Sakura avenue — left tree ── */
     #sakura-left {
       position: fixed;
       bottom: 0;
-      left: -7%;
-      height: 94vh;
+      left: -5%;
+      height: 96vh;
       width: auto;
-      opacity: 0.52;
+      opacity: 0.65;
       pointer-events: none;
-      z-index: 0;
-      filter: drop-shadow(0 0 24px rgba(255,140,180,0.28));
+      z-index: 1;
+      filter: drop-shadow(0 0 30px rgba(255,130,175,0.35));
     }
 
     /* ── Sakura avenue — right tree (mirrored) ── */
     #sakura-right {
       position: fixed;
       bottom: 0;
-      right: -7%;
-      height: 94vh;
+      right: -5%;
+      height: 96vh;
       width: auto;
-      opacity: 0.52;
+      opacity: 0.65;
       pointer-events: none;
-      z-index: 0;
-      filter: drop-shadow(0 0 24px rgba(255,140,180,0.28));
+      z-index: 1;
+      filter: drop-shadow(0 0 30px rgba(255,130,175,0.35));
       transform: scaleX(-1);
     }
 
-    /* ── Petal carpet on the path ── */
+    /* ── Petal carpet — glowing path ── */
     #sakura-ground {
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      height: 28vh;
-      background: radial-gradient(ellipse 65% 100% at 50% 100%,
-        rgba(255,168,196,0.18) 0%,
-        rgba(255,168,196,0.06) 50%,
+      height: 35vh;
+      background: radial-gradient(ellipse 55% 100% at 50% 100%,
+        rgba(255,168,196,0.22) 0%,
+        rgba(255,168,196,0.08) 40%,
         transparent 70%);
       pointer-events: none;
-      z-index: 0;
+      z-index: 1;
     }
 
-    /* ── Petal canvas (falling petals only) ── */
+    /* ── Dark readability overlay (sits above trees, below content) ── */
+    #dark-overlay {
+      position: fixed; inset: 0;
+      background: rgba(10, 8, 20, 0.52);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* ── Petal canvas ── */
     #petal-canvas {
       position: fixed; inset: 0;
-      pointer-events: none; z-index: 0;
+      pointer-events: none;
+      z-index: 3;
     }
 
     /* ── Nav ── */
     nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
+      position: fixed; top: 0; width: 100%; z-index: 50;
       display: flex; justify-content: center; align-items: center;
       padding: 1rem 2rem;
       background: rgba(15,15,26,0.85);
@@ -95,9 +113,8 @@
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
       position: relative;
-      background: radial-gradient(ellipse at top left, rgba(139,92,246,0.15) 0%, transparent 60%),
-                  radial-gradient(ellipse at bottom right, rgba(248,93,127,0.12) 0%, transparent 60%),
-                  var(--dark);
+      background: radial-gradient(ellipse at top left, rgba(139,92,246,0.12) 0%, transparent 55%),
+                  radial-gradient(ellipse at bottom right, rgba(248,93,127,0.10) 0%, transparent 55%);
       text-align: center; padding: 2rem;
     }
     .hero-content { position: relative; z-index: 1; }
@@ -143,8 +160,8 @@
     }
     .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
 
-    /* ── Sections ── */
-    section { padding: 5rem 1rem; position: relative; z-index: 1; }
+    /* ── Sections — transparent so trees show through ── */
+    section { padding: 5rem 1rem; position: relative; z-index: 4; background: transparent; }
     .container { max-width: 900px; margin: 0 auto; }
     .section-title {
       font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;
@@ -157,7 +174,7 @@
     .section-sub { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.95rem; }
 
     /* ── About ── */
-    #about { background: linear-gradient(180deg, var(--dark) 0%, var(--card2) 100%); }
+    #about { background: transparent; }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
     .about-item {
@@ -179,7 +196,7 @@
     }
 
     /* ── Research ── */
-    #research { background: var(--dark); }
+    #research { background: transparent; }
     .research-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem;
     }
@@ -197,7 +214,7 @@
     .research-focus { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
 
     /* ── Publications ── */
-    #publications { background: var(--card2); }
+    #publications { background: transparent; }
     .pub-card {
       background: var(--card); border: 1px solid rgba(139,92,246,0.15);
       border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem;
@@ -225,7 +242,7 @@
     }
 
     /* ── Skills ── */
-    #skills { background: var(--dark); }
+    #skills { background: transparent; }
     .skills-group { margin-bottom: 2rem; }
     .skills-group-title {
       font-family: 'Fira Code', monospace; font-size: 0.85rem;
@@ -248,7 +265,7 @@
     }
 
     /* ── Projects ── */
-    #projects { background: var(--card2); }
+    #projects { background: transparent; }
     .projects-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem;
     }
@@ -274,7 +291,7 @@
 
     /* ── Connect ── */
     #connect {
-      background: radial-gradient(ellipse at center, rgba(139,92,246,0.1) 0%, var(--dark) 70%);
+      background: transparent;
       text-align: center;
     }
     .connect-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2rem; }
@@ -309,9 +326,11 @@
 <body>
 
 <!-- Sakura avenue: 2 trees flanking both sides, fixed to viewport -->
-<img id="sakura-left"   src="tree1.png" alt="" />
-<img id="sakura-right"  src="tree3.png" alt="" />
+<img id="sakura-left"  src="tree1.png" alt="" />
+<img id="sakura-right" src="tree3.png" alt="" />
 <div id="sakura-ground"></div>
+<!-- Dark overlay for text readability (above trees, below content) -->
+<div id="dark-overlay"></div>
 <!-- Petal canvas (falling petals animation) -->
 <canvas id="petal-canvas"></canvas>
 
