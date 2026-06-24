@@ -19,7 +19,6 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -29,40 +28,20 @@
       overflow-x: hidden;
     }
 
-    /* ── Sakura particles ── */
-    .sakura-container {
+    /* ── Blossom canvas ── */
+    #blossom-canvas {
       position: fixed; inset: 0;
-      pointer-events: none; z-index: 0; overflow: hidden;
-    }
-    .petal {
-      position: absolute;
-      width: 10px; height: 10px;
-      background: linear-gradient(135deg, #ffb7c5, #ff85a1);
-      border-radius: 0 100% 0 100%;
-      opacity: 0;
-      animation: fall linear infinite;
-    }
-    @keyframes fall {
-      0%   { transform: translateY(-20px) rotate(0deg);  opacity: 0; }
-      10%  { opacity: 0.7; }
-      90%  { opacity: 0.4; }
-      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+      pointer-events: none; z-index: 0;
     }
 
     /* ── Nav ── */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex; justify-content: center; align-items: center;
       padding: 1rem 2rem;
       background: rgba(15,15,26,0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(139,92,246,0.2);
-    }
-    .nav-logo {
-      font-family: 'Fira Code', monospace;
-      font-weight: 600; font-size: 1.1rem;
-      background: linear-gradient(135deg, var(--pink), var(--purple));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .nav-links { display: flex; gap: 1.5rem; list-style: none; }
     .nav-links a {
@@ -102,15 +81,11 @@
       color: var(--muted); font-size: 1.1rem; margin-bottom: 1.5rem;
     }
     .hero-alias span { color: var(--cyan); }
-    .typing-wrapper {
-      height: 2rem; overflow: hidden; margin-bottom: 2rem;
-    }
+    .typing-wrapper { height: 2rem; overflow: hidden; margin-bottom: 2rem; }
     .typing {
       font-family: 'Fira Code', monospace;
       font-size: 1rem; color: var(--pink);
-      animation: blink 1s step-end infinite;
     }
-    @keyframes blink { 50% { border-color: transparent; } }
     .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn {
       padding: 0.75rem 1.75rem; border-radius: 9999px;
@@ -143,9 +118,7 @@
 
     /* ── About ── */
     #about { background: linear-gradient(180deg, var(--dark) 0%, var(--card2) 100%); }
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
-    }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
     .about-item {
       background: var(--card); border: 1px solid rgba(139,92,246,0.15);
@@ -172,8 +145,7 @@
     }
     .research-card {
       background: var(--card); border: 1px solid rgba(139,92,246,0.15);
-      border-radius: 1rem; padding: 1.5rem;
-      transition: all 0.25s;
+      border-radius: 1rem; padding: 1.5rem; transition: all 0.25s;
     }
     .research-card:hover {
       border-color: var(--purple);
@@ -275,11 +247,11 @@
       transition: all 0.25s;
     }
     .connect-link:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-    .connect-link.github:hover  { border-color: #fff; color: #fff; }
+    .connect-link.github:hover   { border-color: #fff; color: #fff; }
     .connect-link.linkedin:hover { border-color: #0077b5; color: #0077b5; }
-    .connect-link.email:hover   { border-color: #ea4335; color: #ea4335; }
+    .connect-link.email:hover    { border-color: #ea4335; color: #ea4335; }
     .connect-link.telegram:hover { border-color: #2ca5e0; color: #2ca5e0; }
-    .connect-link.instagram:hover { border-color: #e4405f; color: #e4405f; }
+    .connect-link.instagram:hover{ border-color: #e4405f; color: #e4405f; }
 
     /* ── Footer ── */
     footer {
@@ -296,12 +268,11 @@
 </head>
 <body>
 
-<!-- Sakura particles -->
-<div class="sakura-container" id="sakura"></div>
+<!-- Cherry blossom tree canvas (fixed background) -->
+<canvas id="blossom-canvas"></canvas>
 
 <!-- Nav -->
 <nav>
-  <div class="nav-logo">izumi.dev</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#research">Research</a></li>
@@ -540,43 +511,206 @@
 </footer>
 
 <script>
-  // Sakura petals
-  const container = document.getElementById('sakura');
-  for (let i = 0; i < 18; i++) {
-    const petal = document.createElement('div');
-    petal.className = 'petal';
-    petal.style.left = Math.random() * 100 + 'vw';
-    petal.style.width = petal.style.height = (8 + Math.random() * 10) + 'px';
-    petal.style.animationDuration = (8 + Math.random() * 12) + 's';
-    petal.style.animationDelay = (Math.random() * 10) + 's';
-    container.appendChild(petal);
+// ── Cherry blossom tree ──────────────────────────────────────────
+const canvas = document.getElementById('blossom-canvas');
+const ctx    = canvas.getContext('2d');
+
+// Offscreen canvas holds the static tree so we don't redraw branches every frame
+const offscreen    = document.createElement('canvas');
+const offCtx       = offscreen.getContext('2d');
+
+function resize() {
+  canvas.width = offscreen.width = window.innerWidth;
+  canvas.height = offscreen.height = window.innerHeight;
+  buildTree();
+}
+
+// Recursive fractal branch — drawn once into offscreen canvas
+function branch(x, y, angle, len, depth) {
+  if (depth === 0 || len < 2) return;
+
+  const ex = x + Math.cos(angle) * len;
+  const ey = y + Math.sin(angle) * len;
+
+  // Branch stroke — deeper = thicker & slightly more opaque
+  offCtx.beginPath();
+  offCtx.moveTo(x, y);
+  offCtx.lineTo(ex, ey);
+  offCtx.strokeStyle = `rgba(180, 100, 140, ${Math.min(0.13, 0.015 + depth * 0.012)})`;
+  offCtx.lineWidth   = Math.max(0.4, depth * 0.72);
+  offCtx.lineCap     = 'round';
+  offCtx.stroke();
+
+  // Blossom clusters at the outermost tips
+  if (depth <= 2) {
+    const count = 5 + Math.floor(Math.random() * 7);
+    for (let i = 0; i < count; i++) {
+      const bx = ex + (Math.random() - 0.5) * 28;
+      const by = ey + (Math.random() - 0.5) * 28;
+      const r  = 3.5 + Math.random() * 5.5;
+
+      // Outer petal colour
+      offCtx.beginPath();
+      offCtx.arc(bx, by, r, 0, Math.PI * 2);
+      offCtx.fillStyle = `rgba(255, 155, 190, ${0.045 + Math.random() * 0.075})`;
+      offCtx.fill();
+
+      // Bright centre
+      offCtx.beginPath();
+      offCtx.arc(bx, by, r * 0.35, 0, Math.PI * 2);
+      offCtx.fillStyle = `rgba(255, 220, 235, ${0.06 + Math.random() * 0.06})`;
+      offCtx.fill();
+    }
   }
 
-  // Typing animation
-  const phrases = [
-    'Aspiring AI Researcher 🌸',
-    'Multimodal | XAI | Multi-agent Systems',
-    'PhD Seeker 🎯',
-    'Building Explainable AI for Healthcare 🏥',
-  ];
-  let pi = 0, ci = 0, deleting = false;
-  const el = document.getElementById('typing-text');
-  function type() {
-    const cur = phrases[pi];
-    el.textContent = deleting ? cur.slice(0, ci--) : cur.slice(0, ci++);
-    el.style.borderRight = '2px solid #f85d7f';
-    if (!deleting && ci > cur.length) { deleting = true; setTimeout(type, 1800); return; }
-    if (deleting && ci < 0)  { deleting = false; pi = (pi + 1) % phrases.length; ci = 0; }
-    setTimeout(type, deleting ? 40 : 80);
-  }
-  type();
+  // Split into two child branches with slight random spread
+  const spread = 0.36 + Math.random() * 0.22;
+  branch(offCtx === offCtx ? offCtx : offCtx, ex, ey, angle - spread, len * (0.64 + Math.random() * 0.09), depth - 1);
+  branch(offCtx === offCtx ? offCtx : offCtx, ex, ey, angle + spread, len * (0.64 + Math.random() * 0.09), depth - 1);
 
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  revealEls.forEach(el => io.observe(el));
+  // Occasional middle branch for more realistic density
+  if (depth > 4 && Math.random() > 0.52) {
+    branch(offCtx === offCtx ? offCtx : offCtx, ex, ey, angle + (Math.random() - 0.5) * 0.32, len * 0.48, depth - 2);
+  }
+}
+
+// Fix: pass offCtx directly — the ternary was a no-op, just clean it up
+function branchReal(x, y, angle, len, depth) {
+  if (depth === 0 || len < 2) return;
+  const ex = x + Math.cos(angle) * len;
+  const ey = y + Math.sin(angle) * len;
+
+  offCtx.beginPath();
+  offCtx.moveTo(x, y);
+  offCtx.lineTo(ex, ey);
+  offCtx.strokeStyle = `rgba(180, 100, 140, ${Math.min(0.13, 0.015 + depth * 0.012)})`;
+  offCtx.lineWidth   = Math.max(0.4, depth * 0.72);
+  offCtx.lineCap     = 'round';
+  offCtx.stroke();
+
+  if (depth <= 2) {
+    const count = 5 + Math.floor(Math.random() * 7);
+    for (let i = 0; i < count; i++) {
+      const bx = ex + (Math.random() - 0.5) * 28;
+      const by = ey + (Math.random() - 0.5) * 28;
+      const r  = 3.5 + Math.random() * 5.5;
+      offCtx.beginPath();
+      offCtx.arc(bx, by, r, 0, Math.PI * 2);
+      offCtx.fillStyle = `rgba(255, 155, 190, ${0.045 + Math.random() * 0.075})`;
+      offCtx.fill();
+      offCtx.beginPath();
+      offCtx.arc(bx, by, r * 0.35, 0, Math.PI * 2);
+      offCtx.fillStyle = `rgba(255, 220, 235, ${0.06 + Math.random() * 0.06})`;
+      offCtx.fill();
+    }
+  }
+
+  const spread = 0.36 + Math.random() * 0.22;
+  branchReal(ex, ey, angle - spread, len * (0.64 + Math.random() * 0.09), depth - 1);
+  branchReal(ex, ey, angle + spread, len * (0.64 + Math.random() * 0.09), depth - 1);
+  if (depth > 4 && Math.random() > 0.52) {
+    branchReal(ex, ey, angle + (Math.random() - 0.5) * 0.32, len * 0.48, depth - 2);
+  }
+}
+
+function buildTree() {
+  offCtx.clearRect(0, 0, offscreen.width, offscreen.height);
+  // Tree rooted at ~70% from left, bottom of screen
+  branchReal(
+    offscreen.width  * 0.70,
+    offscreen.height * 1.02,
+    -Math.PI / 2,
+    offscreen.height * 0.26,
+    11
+  );
+}
+
+// ── Falling petals ───────────────────────────────────────────────
+class Petal {
+  constructor(scatter) {
+    this.reset(scatter);
+  }
+  reset(scatter = false) {
+    this.x    = Math.random() * canvas.width;
+    this.y    = scatter ? Math.random() * canvas.height : -14;
+    this.vx   = (Math.random() - 0.5) * 0.9;
+    this.vy   = 0.45 + Math.random() * 0.85;
+    this.rot  = Math.random() * Math.PI * 2;
+    this.vrot = (Math.random() - 0.5) * 0.045;
+    this.w    = 4.5 + Math.random() * 5;
+    this.h    = this.w * (0.45 + Math.random() * 0.15);
+    this.a    = 0.18 + Math.random() * 0.28;
+    this.sway = Math.random() * Math.PI * 2;
+    this.swayAmp  = 0.25 + Math.random() * 0.55;
+    this.swaySpd  = 0.008 + Math.random() * 0.016;
+  }
+  update() {
+    this.sway += this.swaySpd;
+    this.x    += this.vx + Math.sin(this.sway) * this.swayAmp;
+    this.y    += this.vy;
+    this.rot  += this.vrot;
+    if (this.y > canvas.height + 18) this.reset(false);
+  }
+  draw() {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rot);
+    // Main petal shape
+    ctx.beginPath();
+    ctx.ellipse(0, 0, this.w, this.h, 0, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255, 168, 196, ${this.a})`;
+    ctx.fill();
+    // Highlight
+    ctx.beginPath();
+    ctx.ellipse(-this.w * 0.18, -this.h * 0.22, this.w * 0.32, this.h * 0.28, -0.4, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255, 225, 238, ${this.a * 0.55})`;
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+const petals = Array.from({ length: 32 }, (_, i) => new Petal(i < 22));
+
+// ── Main animation loop ──────────────────────────────────────────
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Stamp the static tree from the offscreen buffer
+  ctx.drawImage(offscreen, 0, 0);
+  // Animate petals on top
+  for (const p of petals) { p.update(); p.draw(); }
+  requestAnimationFrame(animate);
+}
+
+resize();
+window.addEventListener('resize', resize);
+animate();
+
+// ── Typing animation ─────────────────────────────────────────────
+const phrases = [
+  'Aspiring AI Researcher 🌸',
+  'Multimodal | XAI | Multi-agent Systems',
+  'PhD Seeker 🎯',
+  'Building Explainable AI for Healthcare 🏥',
+];
+let pi = 0, ci = 0, deleting = false;
+const typingEl = document.getElementById('typing-text');
+
+function type() {
+  const cur = phrases[pi];
+  typingEl.textContent = deleting ? cur.slice(0, ci--) : cur.slice(0, ci++);
+  typingEl.style.borderRight = '2px solid #f85d7f';
+  if (!deleting && ci > cur.length)  { deleting = true;  setTimeout(type, 1800); return; }
+  if (deleting  && ci < 0)           { deleting = false; pi = (pi + 1) % phrases.length; ci = 0; }
+  setTimeout(type, deleting ? 38 : 78);
+}
+type();
+
+// ── Scroll reveal ─────────────────────────────────────────────────
+const io = new IntersectionObserver(
+  entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+  { threshold: 0.1 }
+);
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
