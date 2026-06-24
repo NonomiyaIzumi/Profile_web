@@ -28,28 +28,22 @@
       overflow-x: hidden;
     }
 
-    /* ── Animated sakura background ── */
+    /* ── Static sakura background photo ── */
     #sakura-bg-anim {
       position: fixed; inset: -4%;
       background: url('bg_night_street.jpg') center/cover no-repeat;
       pointer-events: none;
       z-index: 0;
-      animation: sakura-sway 12s ease-in-out infinite;
-      will-change: transform;
-    }
-    @keyframes sakura-sway {
-      0%   { transform: scale(1.04) translate(0,    0);    }
-      25%  { transform: scale(1.06) translate(-1%,  0.5%); }
-      50%  { transform: scale(1.05) translate(0.5%, -0.5%);}
-      75%  { transform: scale(1.06) translate(1%,   0.3%); }
-      100% { transform: scale(1.04) translate(0,    0);    }
+      transform: scale(1.04);
     }
 
     /* ═══════════════════════════════════════════
        Z-INDEX STACK
+       0 — background photo (static)
        1 — dark readability overlay
-       2 — petal canvas
-       3 — sections (transparent)
+       2 — SVG branch overlays (animated sway)
+       3 — petal canvas (petals fall in front)
+       4 — sections (transparent)
        50 — nav
     ═══════════════════════════════════════════ */
 
@@ -61,11 +55,38 @@
       z-index: 1;
     }
 
+    /* ── SVG sakura branch overlays ── */
+    .sakura-branch {
+      position: fixed; top: -20px;
+      pointer-events: none; z-index: 2;
+      filter: drop-shadow(0 0 10px rgba(255,145,195,0.22));
+    }
+    #branch-left {
+      left: -25px;
+      transform-origin: 25px 20px;
+      animation: bsway-l 5s ease-in-out infinite;
+    }
+    #branch-right {
+      right: -25px;
+      transform-origin: calc(100% - 25px) 20px;
+      animation: bsway-r 5.5s ease-in-out infinite;
+    }
+    @keyframes bsway-l {
+      0%, 100% { transform: rotateZ(0deg); }
+      35%       { transform: rotateZ(-3deg); }
+      65%       { transform: rotateZ(2.5deg); }
+    }
+    @keyframes bsway-r {
+      0%, 100% { transform: rotateZ(0deg); }
+      30%       { transform: rotateZ(3.5deg); }
+      70%       { transform: rotateZ(-2deg); }
+    }
+
     /* ── Petal canvas ── */
     #petal-canvas {
       position: fixed; inset: 0;
       pointer-events: none;
-      z-index: 2;
+      z-index: 3;
     }
 
     /* ── Nav ── */
@@ -137,7 +158,7 @@
     .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
 
     /* ── Sections — transparent so background shows through ── */
-    section { padding: 5rem 1rem; position: relative; z-index: 3; background: transparent; }
+    section { padding: 5rem 1rem; position: relative; z-index: 4; background: transparent; }
     .container { max-width: 900px; margin: 0 auto; }
     .section-title {
       font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;
@@ -305,6 +326,157 @@
 <div id="sakura-bg-anim"></div>
 <!-- Dark overlay for text readability -->
 <div id="dark-overlay"></div>
+
+<!-- Left sakura branch (SVG overlay, CSS sway animation) -->
+<div id="branch-left" class="sakura-branch">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 450" width="480" height="450">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0,0 C35,45 75,90 110,118 C140,140 162,170 188,208 C215,248 255,278 312,308" stroke="#3a1520" stroke-width="11" opacity="0.9"/>
+    <path d="M100,112 C148,75 202,44 262,15"  stroke="#3a1520" stroke-width="7"   opacity="0.88"/>
+    <path d="M192,42  C218,22 242,8  268,-3"  stroke="#3a1520" stroke-width="4.5" opacity="0.85"/>
+    <path d="M228,28  C242,46 250,64 248,86"  stroke="#3a1520" stroke-width="3.5" opacity="0.8"/>
+    <path d="M168,186 C215,150 268,122 332,106" stroke="#3a1520" stroke-width="6" opacity="0.85"/>
+    <path d="M272,118 C300,100 325,88 352,82"  stroke="#3a1520" stroke-width="3.5" opacity="0.8"/>
+    <path d="M288,288 C320,268 358,254 398,248" stroke="#3a1520" stroke-width="5" opacity="0.82"/>
+  </g>
+  <!-- tip of branch1 -->
+  <g opacity="0.88">
+    <circle cx="260" cy="13"  r="9"   fill="rgba(255,162,198,0.82)"/>
+    <circle cx="272" cy="6"   r="8"   fill="rgba(255,185,215,0.78)"/>
+    <circle cx="250" cy="5"   r="8"   fill="rgba(255,145,185,0.78)"/>
+    <circle cx="278" cy="18"  r="7"   fill="rgba(255,208,228,0.73)"/>
+    <circle cx="246" cy="20"  r="7"   fill="rgba(255,175,210,0.78)"/>
+    <circle cx="263" cy="11"  r="3.5" fill="rgba(255,238,248,0.95)"/>
+  </g>
+  <!-- twig A tip -->
+  <g opacity="0.85">
+    <circle cx="268" cy="-2"  r="8"   fill="rgba(255,162,198,0.82)"/>
+    <circle cx="278" cy="-8"  r="7.5" fill="rgba(255,185,215,0.78)"/>
+    <circle cx="258" cy="-9"  r="7"   fill="rgba(255,145,185,0.78)"/>
+    <circle cx="275" cy="6"   r="6.5" fill="rgba(255,208,228,0.73)"/>
+    <circle cx="269" cy="-1"  r="3"   fill="rgba(255,238,248,0.95)"/>
+  </g>
+  <!-- twig B tip -->
+  <g opacity="0.82">
+    <circle cx="248" cy="84"  r="7.5" fill="rgba(255,162,198,0.78)"/>
+    <circle cx="258" cy="78"  r="7"   fill="rgba(255,185,215,0.73)"/>
+    <circle cx="238" cy="79"  r="7"   fill="rgba(255,145,185,0.73)"/>
+    <circle cx="253" cy="93"  r="6"   fill="rgba(255,208,228,0.68)"/>
+    <circle cx="249" cy="82"  r="3"   fill="rgba(255,238,248,0.92)"/>
+  </g>
+  <!-- tip of branch2 -->
+  <g opacity="0.85">
+    <circle cx="332" cy="103" r="8.5" fill="rgba(255,162,198,0.82)"/>
+    <circle cx="345" cy="96"  r="7.5" fill="rgba(255,185,215,0.78)"/>
+    <circle cx="320" cy="98"  r="7.5" fill="rgba(255,145,185,0.78)"/>
+    <circle cx="340" cy="114" r="7"   fill="rgba(255,208,228,0.73)"/>
+    <circle cx="322" cy="112" r="6.5" fill="rgba(255,175,210,0.73)"/>
+    <circle cx="334" cy="102" r="3.5" fill="rgba(255,238,248,0.95)"/>
+  </g>
+  <!-- twig C tip -->
+  <g opacity="0.8">
+    <circle cx="352" cy="80"  r="8"   fill="rgba(255,162,198,0.78)"/>
+    <circle cx="363" cy="74"  r="7"   fill="rgba(255,185,215,0.73)"/>
+    <circle cx="342" cy="76"  r="7"   fill="rgba(255,145,185,0.73)"/>
+    <circle cx="358" cy="90"  r="6"   fill="rgba(255,208,228,0.68)"/>
+    <circle cx="354" cy="78"  r="3"   fill="rgba(255,238,248,0.9)"/>
+  </g>
+  <!-- mid-branch scatter -->
+  <g opacity="0.72">
+    <circle cx="194" cy="40"  r="7"   fill="rgba(255,162,198,0.72)"/>
+    <circle cx="204" cy="34"  r="6"   fill="rgba(255,185,215,0.68)"/>
+    <circle cx="184" cy="36"  r="6"   fill="rgba(255,145,185,0.68)"/>
+    <circle cx="198" cy="48"  r="5.5" fill="rgba(255,208,228,0.63)"/>
+    <circle cx="196" cy="38"  r="2.5" fill="rgba(255,238,248,0.85)"/>
+  </g>
+  <!-- side branch tip -->
+  <g opacity="0.72">
+    <circle cx="397" cy="246" r="7.5" fill="rgba(255,162,198,0.72)"/>
+    <circle cx="408" cy="240" r="7"   fill="rgba(255,185,215,0.68)"/>
+    <circle cx="387" cy="242" r="7"   fill="rgba(255,145,185,0.68)"/>
+    <circle cx="403" cy="256" r="6"   fill="rgba(255,208,228,0.63)"/>
+    <circle cx="399" cy="244" r="3"   fill="rgba(255,238,248,0.85)"/>
+  </g>
+  <!-- scattered tiny buds -->
+  <circle cx="148" cy="158" r="5"   fill="rgba(255,162,198,0.5)"/>
+  <circle cx="155" cy="152" r="4"   fill="rgba(255,210,230,0.45)"/>
+  <circle cx="228" cy="238" r="5"   fill="rgba(255,162,198,0.48)"/>
+  <circle cx="238" cy="232" r="4"   fill="rgba(255,210,230,0.42)"/>
+</svg>
+</div>
+
+<!-- Right sakura branch (horizontally mirrored via SVG transform) -->
+<div id="branch-right" class="sakura-branch">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 450" width="480" height="450">
+  <g transform="translate(480,0) scale(-1,1)">
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0,0 C35,45 75,90 110,118 C140,140 162,170 188,208 C215,248 255,278 312,308" stroke="#3a1520" stroke-width="11" opacity="0.9"/>
+      <path d="M100,112 C148,75 202,44 262,15"  stroke="#3a1520" stroke-width="7"   opacity="0.88"/>
+      <path d="M192,42  C218,22 242,8  268,-3"  stroke="#3a1520" stroke-width="4.5" opacity="0.85"/>
+      <path d="M228,28  C242,46 250,64 248,86"  stroke="#3a1520" stroke-width="3.5" opacity="0.8"/>
+      <path d="M168,186 C215,150 268,122 332,106" stroke="#3a1520" stroke-width="6" opacity="0.85"/>
+      <path d="M272,118 C300,100 325,88 352,82"  stroke="#3a1520" stroke-width="3.5" opacity="0.8"/>
+      <path d="M288,288 C320,268 358,254 398,248" stroke="#3a1520" stroke-width="5" opacity="0.82"/>
+    </g>
+    <g opacity="0.88">
+      <circle cx="260" cy="13"  r="9"   fill="rgba(255,162,198,0.82)"/>
+      <circle cx="272" cy="6"   r="8"   fill="rgba(255,185,215,0.78)"/>
+      <circle cx="250" cy="5"   r="8"   fill="rgba(255,145,185,0.78)"/>
+      <circle cx="278" cy="18"  r="7"   fill="rgba(255,208,228,0.73)"/>
+      <circle cx="246" cy="20"  r="7"   fill="rgba(255,175,210,0.78)"/>
+      <circle cx="263" cy="11"  r="3.5" fill="rgba(255,238,248,0.95)"/>
+    </g>
+    <g opacity="0.85">
+      <circle cx="268" cy="-2"  r="8"   fill="rgba(255,162,198,0.82)"/>
+      <circle cx="278" cy="-8"  r="7.5" fill="rgba(255,185,215,0.78)"/>
+      <circle cx="258" cy="-9"  r="7"   fill="rgba(255,145,185,0.78)"/>
+      <circle cx="275" cy="6"   r="6.5" fill="rgba(255,208,228,0.73)"/>
+      <circle cx="269" cy="-1"  r="3"   fill="rgba(255,238,248,0.95)"/>
+    </g>
+    <g opacity="0.82">
+      <circle cx="248" cy="84"  r="7.5" fill="rgba(255,162,198,0.78)"/>
+      <circle cx="258" cy="78"  r="7"   fill="rgba(255,185,215,0.73)"/>
+      <circle cx="238" cy="79"  r="7"   fill="rgba(255,145,185,0.73)"/>
+      <circle cx="253" cy="93"  r="6"   fill="rgba(255,208,228,0.68)"/>
+      <circle cx="249" cy="82"  r="3"   fill="rgba(255,238,248,0.92)"/>
+    </g>
+    <g opacity="0.85">
+      <circle cx="332" cy="103" r="8.5" fill="rgba(255,162,198,0.82)"/>
+      <circle cx="345" cy="96"  r="7.5" fill="rgba(255,185,215,0.78)"/>
+      <circle cx="320" cy="98"  r="7.5" fill="rgba(255,145,185,0.78)"/>
+      <circle cx="340" cy="114" r="7"   fill="rgba(255,208,228,0.73)"/>
+      <circle cx="322" cy="112" r="6.5" fill="rgba(255,175,210,0.73)"/>
+      <circle cx="334" cy="102" r="3.5" fill="rgba(255,238,248,0.95)"/>
+    </g>
+    <g opacity="0.8">
+      <circle cx="352" cy="80"  r="8"   fill="rgba(255,162,198,0.78)"/>
+      <circle cx="363" cy="74"  r="7"   fill="rgba(255,185,215,0.73)"/>
+      <circle cx="342" cy="76"  r="7"   fill="rgba(255,145,185,0.73)"/>
+      <circle cx="358" cy="90"  r="6"   fill="rgba(255,208,228,0.68)"/>
+      <circle cx="354" cy="78"  r="3"   fill="rgba(255,238,248,0.9)"/>
+    </g>
+    <g opacity="0.72">
+      <circle cx="194" cy="40"  r="7"   fill="rgba(255,162,198,0.72)"/>
+      <circle cx="204" cy="34"  r="6"   fill="rgba(255,185,215,0.68)"/>
+      <circle cx="184" cy="36"  r="6"   fill="rgba(255,145,185,0.68)"/>
+      <circle cx="198" cy="48"  r="5.5" fill="rgba(255,208,228,0.63)"/>
+      <circle cx="196" cy="38"  r="2.5" fill="rgba(255,238,248,0.85)"/>
+    </g>
+    <g opacity="0.72">
+      <circle cx="397" cy="246" r="7.5" fill="rgba(255,162,198,0.72)"/>
+      <circle cx="408" cy="240" r="7"   fill="rgba(255,185,215,0.68)"/>
+      <circle cx="387" cy="242" r="7"   fill="rgba(255,145,185,0.68)"/>
+      <circle cx="403" cy="256" r="6"   fill="rgba(255,208,228,0.63)"/>
+      <circle cx="399" cy="244" r="3"   fill="rgba(255,238,248,0.85)"/>
+    </g>
+    <circle cx="148" cy="158" r="5"   fill="rgba(255,162,198,0.5)"/>
+    <circle cx="155" cy="152" r="4"   fill="rgba(255,210,230,0.45)"/>
+    <circle cx="228" cy="238" r="5"   fill="rgba(255,162,198,0.48)"/>
+    <circle cx="238" cy="232" r="4"   fill="rgba(255,210,230,0.42)"/>
+  </g>
+</svg>
+</div>
+
 <!-- Petal canvas (falling petals animation) -->
 <canvas id="petal-canvas"></canvas>
 
