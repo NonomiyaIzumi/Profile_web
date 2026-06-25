@@ -55,32 +55,7 @@
       z-index: 1;
     }
 
-    /* â”€â”€ SVG sakura branch overlays â”€â”€ */
-    .sakura-branch {
-      position: fixed; top: -20px;
-      pointer-events: none; z-index: 2;
-      filter: drop-shadow(0 0 10px rgba(255,145,195,0.22));
-    }
-    #branch-left {
-      left: -25px;
-      transform-origin: 25px 20px;
-      animation: bsway-l 5s ease-in-out infinite;
-    }
-    #branch-right {
-      right: -25px;
-      transform-origin: calc(100% - 25px) 20px;
-      animation: bsway-r 5.5s ease-in-out infinite;
-    }
-    @keyframes bsway-l {
-      0%, 100% { transform: rotateZ(0deg); }
-      35%       { transform: rotateZ(-3deg); }
-      65%       { transform: rotateZ(2.5deg); }
-    }
-    @keyframes bsway-r {
-      0%, 100% { transform: scaleX(-1) rotateZ(0deg); }
-      30%       { transform: scaleX(-1) rotateZ(3.5deg); }
-      70%       { transform: scaleX(-1) rotateZ(-2deg); }
-    }
+        }
 
     /* â”€â”€ Petal canvas â”€â”€ */
     #petal-canvas {
@@ -327,15 +302,6 @@
 <!-- Dark overlay for text readability -->
 <div id="dark-overlay"></div>
 
-<!-- Left sakura branch (SVG, fixed, CSS sway) -->
-<div id="branch-left" class="sakura-branch">
-  <img src="sakura_branch.svg" width="580" height="500" alt="" />
-</div>
-
-<!-- Right sakura branch (mirrored via scaleX in keyframes) -->
-<div id="branch-right" class="sakura-branch">
-  <img src="sakura_branch.svg" width="580" height="500" alt="" />
-</div>
 
 <!-- Petal canvas (falling petals animation) -->
 <canvas id="petal-canvas"></canvas>
