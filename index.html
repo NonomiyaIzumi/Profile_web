@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -28,7 +28,7 @@
       overflow-x: hidden;
     }
 
-    /* â”€â”€ Static sakura background photo â”€â”€ */
+    /* -- Sakura background photo -- */
     #sakura-bg-anim {
       position: fixed; inset: -4%;
       background: url('bg_night_street.jpg') center/cover no-repeat;
@@ -37,17 +37,7 @@
       transform: scale(1.04);
     }
 
-    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-       Z-INDEX STACK
-       0 â€” background photo (static)
-       1 â€” dark readability overlay
-       2 â€” SVG branch overlays (animated sway)
-       3 â€” petal canvas (petals fall in front)
-       4 â€” sections (transparent)
-       50 â€” nav
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-
-    /* â”€â”€ Dark readability overlay â”€â”€ */
+    /* -- Dark readability overlay -- */
     #dark-overlay {
       position: fixed; inset: 0;
       background: rgba(8, 6, 18, 0.55);
@@ -55,16 +45,14 @@
       z-index: 1;
     }
 
-        }
-
-    /* â”€â”€ Petal canvas â”€â”€ */
+    /* -- Petal canvas -- */
     #petal-canvas {
       position: fixed; inset: 0;
       pointer-events: none;
       z-index: 3;
     }
 
-    /* â”€â”€ Nav â”€â”€ */
+    /* -- Nav -- */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 50;
       display: flex; justify-content: center; align-items: center;
@@ -80,7 +68,7 @@
     }
     .nav-links a:hover { color: var(--pink); }
 
-    /* â”€â”€ Hero â”€â”€ */
+    /* -- Hero -- */
     #hero {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
@@ -89,7 +77,7 @@
                   radial-gradient(ellipse at bottom right, rgba(248,93,127,0.10) 0%, transparent 55%);
       text-align: center; padding: 2rem;
     }
-    .hero-content { position: relative; z-index: 1; }
+    .hero-content { position: relative; z-index: 4; }
     .hero-badge {
       display: inline-block;
       background: rgba(139,92,246,0.15);
@@ -132,7 +120,7 @@
     }
     .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
 
-    /* â”€â”€ Sections â€” transparent so background shows through â”€â”€ */
+    /* -- Sections -- */
     section { padding: 5rem 1rem; position: relative; z-index: 4; background: transparent; }
     .container { max-width: 900px; margin: 0 auto; }
     .section-title {
@@ -145,7 +133,7 @@
     }
     .section-sub { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.95rem; }
 
-    /* â”€â”€ About â”€â”€ */
+    /* -- About -- */
     #about { background: transparent; }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
@@ -167,7 +155,7 @@
       margin-bottom: 2rem; font-style: italic; color: var(--muted);
     }
 
-    /* â”€â”€ Research â”€â”€ */
+    /* -- Research -- */
     #research { background: transparent; }
     .research-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem;
@@ -185,7 +173,7 @@
     .research-area { font-weight: 600; margin-bottom: 0.4rem; }
     .research-focus { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
 
-    /* â”€â”€ Publications â”€â”€ */
+    /* -- Publications -- */
     #publications { background: transparent; }
     .pub-card {
       background: var(--card); border: 1px solid rgba(139,92,246,0.15);
@@ -213,7 +201,7 @@
       color: var(--purple); border-radius: 9999px; padding: 0.3rem 0.9rem; font-size: 0.82rem;
     }
 
-    /* â”€â”€ Skills â”€â”€ */
+    /* -- Skills -- */
     #skills { background: transparent; }
     .skills-group { margin-bottom: 2rem; }
     .skills-group-title {
@@ -236,7 +224,7 @@
       background: linear-gradient(135deg, var(--pink), var(--purple));
     }
 
-    /* â”€â”€ Projects â”€â”€ */
+    /* -- Projects -- */
     #projects { background: transparent; }
     .projects-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem;
@@ -261,7 +249,7 @@
     .status-building { background: rgba(139,92,246,0.12); color: var(--purple); }
     .status-competing { background: rgba(6,182,212,0.12); color: var(--cyan); }
 
-    /* â”€â”€ Connect â”€â”€ */
+    /* -- Connect -- */
     #connect {
       background: transparent;
       text-align: center;
@@ -282,7 +270,7 @@
     .connect-link.telegram:hover { border-color: #2ca5e0; color: #2ca5e0; }
     .connect-link.instagram:hover{ border-color: #e4405f; color: #e4405f; }
 
-    /* â”€â”€ Footer â”€â”€ */
+    /* -- Footer -- */
     footer {
       background: var(--card); border-top: 1px solid rgba(139,92,246,0.1);
       text-align: center; padding: 2rem 1rem;
@@ -290,18 +278,17 @@
     }
     footer .heart { color: var(--pink); }
 
-    /* â”€â”€ Scroll reveal â”€â”€ */
+    /* -- Scroll reveal -- */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-<!-- Animated sakura background -->
+<!-- Sakura background -->
 <div id="sakura-bg-anim"></div>
 <!-- Dark overlay for text readability -->
 <div id="dark-overlay"></div>
-
 
 <!-- Petal canvas (falling petals animation) -->
 <canvas id="petal-canvas"></canvas>
@@ -321,9 +308,9 @@
 <!-- Hero -->
 <section id="hero">
   <div class="hero-content">
-    <div class="hero-badge">ðŸŒ¸ Open to PhD opportunities</div>
+    <div class="hero-badge">🌸 Open to PhD opportunities</div>
     <h1 class="hero-name">Nam Vuong Duy Hai</h1>
-    <p class="hero-alias">aka <span>Izumi</span> Â· NonomiyaIzumi</p>
+    <p class="hero-alias">aka <span>Izumi</span> &middot; NonomiyaIzumi</p>
     <div class="typing-wrapper">
       <span class="typing" id="typing-text"></span>
     </div>
@@ -337,42 +324,42 @@
 <!-- About -->
 <section id="about">
   <div class="container reveal">
-    <h2 class="section-title">ðŸŒ¸ About Me</h2>
-    <p class="section-sub">AI Researcher Â· Hanoi, Vietnam</p>
+    <h2 class="section-title">🌸 About Me</h2>
+    <p class="section-sub">AI Researcher &middot; Hanoi, Vietnam</p>
     <div class="quote-block">
       "Intelligence without wisdom is just computation."
     </div>
     <div class="about-grid">
       <div class="about-item">
-        <span class="about-icon">ðŸŽ“</span>
+        <span class="about-icon">🎓</span>
         <div>
           <div class="about-label">Education</div>
           <div class="about-value">B.Sc. Computer Science<br/>
-            <a href="https://fpt.edu.vn" target="_blank">FPT University</a> Â· Data Science & AI Â· GPA 3.1/4.0
+            <a href="https://fpt.edu.vn" target="_blank">FPT University</a> &middot; Data Science &amp; AI &middot; GPA 3.1/4.0
           </div>
         </div>
       </div>
       <div class="about-item">
-        <span class="about-icon">ðŸ”¬</span>
+        <span class="about-icon">🔬</span>
         <div>
           <div class="about-label">Position</div>
           <div class="about-value">Research Assistant<br/>
-            <a href="https://tvluong.wordpress.com/" target="_blank">Business AI Lab</a> Â· NEU
+            <a href="https://tvluong.wordpress.com/" target="_blank">Business AI Lab</a> &middot; NEU
           </div>
         </div>
       </div>
       <div class="about-item">
-        <span class="about-icon">ðŸŒ</span>
+        <span class="about-icon">🌐</span>
         <div>
           <div class="about-label">Languages</div>
-          <div class="about-value">Vietnamese ðŸ‡»ðŸ‡³ Â· English (IELTS 6.0) Â· Japanese ðŸ‡¯ðŸ‡µ (JLPT N5)</div>
+          <div class="about-value">Vietnamese 🇻🇳 &middot; English (IELTS 6.0) &middot; Japanese 🇯🇵 (JLPT N5)</div>
         </div>
       </div>
       <div class="about-item">
-        <span class="about-icon">ðŸŽ¯</span>
+        <span class="about-icon">🎯</span>
         <div>
           <div class="about-label">Goal</div>
-          <div class="about-value">PhD in AI â€” XAI Â· Multimodal Learning Â· Agentic LLM Systems</div>
+          <div class="about-value">PhD in AI &mdash; XAI &middot; Multimodal Learning &middot; Agentic LLM Systems</div>
         </div>
       </div>
     </div>
@@ -382,26 +369,26 @@
 <!-- Research -->
 <section id="research">
   <div class="container reveal">
-    <h2 class="section-title">ðŸ”­ Research Interests</h2>
+    <h2 class="section-title">🔭 Research Interests</h2>
     <p class="section-sub">Areas I'm actively working on and thinking about</p>
     <div class="research-grid">
       <div class="research-card">
-        <div class="research-emoji">ðŸ§ </div>
+        <div class="research-emoji">🧠</div>
         <div class="research-area">Explainable AI</div>
-        <div class="research-focus">Multimodal XAI for Healthcare & Business/Economics decision support</div>
+        <div class="research-focus">Multimodal XAI for Healthcare &amp; Business/Economics decision support</div>
       </div>
       <div class="research-card">
-        <div class="research-emoji">ðŸŽ­</div>
+        <div class="research-emoji">🎭</div>
         <div class="research-area">Multimodal Learning</div>
         <div class="research-focus">Vision-Language Models, ECG + LLM fusion for clinical tasks</div>
       </div>
       <div class="research-card">
-        <div class="research-emoji">ðŸ¤–</div>
+        <div class="research-emoji">🤖</div>
         <div class="research-area">Multi-agent Systems</div>
         <div class="research-focus">Agentic LLM pipelines, JEPA-based predictive representation learning</div>
       </div>
       <div class="research-card">
-        <div class="research-emoji">ðŸ¥</div>
+        <div class="research-emoji">🏥</div>
         <div class="research-area">AI for Healthcare</div>
         <div class="research-focus">ECG cardiac analysis, clinical decision support systems</div>
       </div>
@@ -412,33 +399,33 @@
 <!-- Publications -->
 <section id="publications">
   <div class="container reveal">
-    <h2 class="section-title">ðŸ“š Publications</h2>
+    <h2 class="section-title">📚 Publications</h2>
     <p class="section-sub">Conference papers, journals, and academic service</p>
 
     <div class="pub-card">
       <div>
         <span class="pub-label">[C.1] Conference</span>
-        <span class="pub-status">âœ… Accepted</span>
+        <span class="pub-status">✅ Accepted</span>
       </div>
       <div class="pub-title">Enhancing Explainable Cardiac Diagnosis with Guide-Grounded Multimodal LLMs</div>
       <div class="pub-authors">Hai-Nam Vuong Duy, Trang Mai Xuan, Luong Thien Van</div>
-      <div class="pub-venue">ðŸ“ CITA 2026 Â· 15th Conference on Information Technology and its Applications Â· Springer</div>
+      <div class="pub-venue">📍 CITA 2026 &middot; 15th Conference on Information Technology and its Applications &middot; Springer</div>
     </div>
 
     <div class="pub-card">
       <div>
         <span class="pub-label">[J.1] Journal</span>
-        <span class="pub-status" style="background:rgba(139,92,246,0.12);color:var(--purple)">ðŸ“ In Progress</span>
+        <span class="pub-status" style="background:rgba(139,92,246,0.12);color:var(--purple)">📝 In Progress</span>
       </div>
       <div class="pub-title">Enhance Explainable AI using MultiAgent System</div>
       <div class="pub-authors">Nam Vuong Duy Hai, Trang Xuan Mai, Van Luong Thien</div>
-      <div class="pub-venue">ðŸ“ Manuscript in preparation</div>
+      <div class="pub-venue">📝 Manuscript in preparation</div>
     </div>
 
     <h3 style="margin-top:2rem;font-size:1rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em">Academic Service</h3>
     <div class="service-list">
-      <span class="service-badge">Reviewer Â· FJCAI 2026</span>
-      <span class="service-badge">Reviewer Â· CITA 2026 (Springer)</span>
+      <span class="service-badge">Reviewer &middot; FJCAI 2026</span>
+      <span class="service-badge">Reviewer &middot; CITA 2026 (Springer)</span>
     </div>
   </div>
 </section>
@@ -446,11 +433,11 @@
 <!-- Skills -->
 <section id="skills">
   <div class="container reveal">
-    <h2 class="section-title">ðŸ›  Tech Stack</h2>
+    <h2 class="section-title">🛠 Tech Stack</h2>
     <p class="section-sub">Tools and technologies I work with regularly</p>
 
     <div class="skills-group">
-      <div class="skills-group-title">Machine Learning & Deep Learning</div>
+      <div class="skills-group-title">Machine Learning &amp; Deep Learning</div>
       <div class="skills-badges">
         <span class="skill-badge"><span class="skill-dot"></span>Python</span>
         <span class="skill-badge"><span class="skill-dot"></span>PyTorch</span>
@@ -463,7 +450,7 @@
     </div>
 
     <div class="skills-group">
-      <div class="skills-group-title">LLM & Agents</div>
+      <div class="skills-group-title">LLM &amp; Agents</div>
       <div class="skills-badges">
         <span class="skill-badge"><span class="skill-dot"></span>OpenAI Agents SDK</span>
         <span class="skill-badge"><span class="skill-dot"></span>LlamaIndex</span>
@@ -472,9 +459,9 @@
     </div>
 
     <div class="skills-group">
-      <div class="skills-group-title">Tools & Others</div>
+      <div class="skills-group-title">Tools &amp; Others</div>
       <div class="skills-badges">
-        <span class="skill-badge"><span class="skill-dot"></span>Git & GitHub</span>
+        <span class="skill-badge"><span class="skill-dot"></span>Git &amp; GitHub</span>
         <span class="skill-badge"><span class="skill-dot"></span>VS Code</span>
         <span class="skill-badge"><span class="skill-dot"></span>LaTeX</span>
         <span class="skill-badge"><span class="skill-dot"></span>Docker</span>
@@ -486,26 +473,26 @@
 <!-- Projects -->
 <section id="projects">
   <div class="container reveal">
-    <h2 class="section-title">ðŸš€ Current Projects</h2>
+    <h2 class="section-title">🚀 Current Projects</h2>
     <p class="section-sub">What I'm actively building and researching</p>
     <div class="projects-grid">
       <div class="project-card">
-        <div class="project-icon">ðŸ¥</div>
+        <div class="project-icon">🏥</div>
         <div class="project-name">XAI for ECG</div>
         <div class="project-desc">Explainable cardiac diagnosis with Guide-Grounded Multimodal LLMs. Research at Business AI Lab, NEU.</div>
-        <span class="project-status status-research">ðŸ”¬ Research</span>
+        <span class="project-status status-research">🔬 Research</span>
       </div>
       <div class="project-card">
-        <div class="project-icon">ðŸ“š</div>
+        <div class="project-icon">📚</div>
         <div class="project-name">EduVision</div>
         <div class="project-desc">AI-powered educational platform with intelligent features for personalized learning experiences.</div>
-        <span class="project-status status-building">ðŸ—ï¸ Building</span>
+        <span class="project-status status-building">🏗️ Building</span>
       </div>
       <div class="project-card">
-        <div class="project-icon">ðŸŒŠ</div>
+        <div class="project-icon">🌊</div>
         <div class="project-name">Flood Detection</div>
         <div class="project-desc">Image retrieval system for disaster response classification. DPL302m coursework / Kaggle competition.</div>
-        <span class="project-status status-competing">ðŸ“Š Competing</span>
+        <span class="project-status status-competing">📊 Competing</span>
       </div>
     </div>
   </div>
@@ -514,7 +501,7 @@
 <!-- Connect -->
 <section id="connect">
   <div class="container reveal">
-    <h2 class="section-title">ðŸŒ¸ Connect</h2>
+    <h2 class="section-title">🌸 Connect</h2>
     <p class="section-sub">I'm open to research collaborations, PhD opportunities, and interesting conversations</p>
     <div class="connect-links">
       <a href="https://github.com/NonomiyaIzumi" target="_blank" class="connect-link github">
@@ -542,11 +529,11 @@
 </section>
 
 <footer>
-  <p>Built with <span class="heart">â™¥</span> by Nam Vuong Duy Hai Â· 2026</p>
+  <p>Built with <span class="heart">&#9829;</span> by Nam Vuong Duy Hai &middot; 2026</p>
 </footer>
 
 <script>
-// â”€â”€ Falling petals (canvas) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// -- Falling petals (canvas) --
 const canvas = document.getElementById('petal-canvas');
 const ctx    = canvas.getContext('2d');
 
@@ -605,12 +592,12 @@ function animate() {
 }
 animate();
 
-// â”€â”€ Typing animation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// -- Typing animation --
 const phrases = [
-  'Aspiring AI Researcher ðŸŒ¸',
+  'Aspiring AI Researcher 🌸',
   'Multimodal | XAI | Multi-agent Systems',
-  'PhD Seeker ðŸŽ¯',
-  'Building Explainable AI for Healthcare ðŸ¥',
+  'PhD Seeker 🎯',
+  'Building Explainable AI for Healthcare 🏥',
 ];
 let pi = 0, ci = 0, deleting = false;
 const typingEl = document.getElementById('typing-text');
@@ -625,7 +612,7 @@ function type() {
 }
 type();
 
-// â”€â”€ Scroll reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// -- Scroll reveal --
 const io = new IntersectionObserver(
   entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
   { threshold: 0.1 }
