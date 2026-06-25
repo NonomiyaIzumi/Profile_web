@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -28,7 +28,7 @@
       overflow-x: hidden;
     }
 
-    /* ── Static sakura background photo ── */
+    /* â”€â”€ Static sakura background photo â”€â”€ */
     #sakura-bg-anim {
       position: fixed; inset: -4%;
       background: url('bg_night_street.jpg') center/cover no-repeat;
@@ -37,17 +37,17 @@
       transform: scale(1.04);
     }
 
-    /* ═══════════════════════════════════════════
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        Z-INDEX STACK
-       0 — background photo (static)
-       1 — dark readability overlay
-       2 — SVG branch overlays (animated sway)
-       3 — petal canvas (petals fall in front)
-       4 — sections (transparent)
-       50 — nav
-    ═══════════════════════════════════════════ */
+       0 â€” background photo (static)
+       1 â€” dark readability overlay
+       2 â€” SVG branch overlays (animated sway)
+       3 â€” petal canvas (petals fall in front)
+       4 â€” sections (transparent)
+       50 â€” nav
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-    /* ── Dark readability overlay ── */
+    /* â”€â”€ Dark readability overlay â”€â”€ */
     #dark-overlay {
       position: fixed; inset: 0;
       background: rgba(8, 6, 18, 0.55);
@@ -55,7 +55,7 @@
       z-index: 1;
     }
 
-    /* ── SVG sakura branch overlays ── */
+    /* â”€â”€ SVG sakura branch overlays â”€â”€ */
     .sakura-branch {
       position: fixed; top: -20px;
       pointer-events: none; z-index: 2;
@@ -77,19 +77,19 @@
       65%       { transform: rotateZ(2.5deg); }
     }
     @keyframes bsway-r {
-      0%, 100% { transform: rotateZ(0deg); }
-      30%       { transform: rotateZ(3.5deg); }
-      70%       { transform: rotateZ(-2deg); }
+      0%, 100% { transform: scaleX(-1) rotateZ(0deg); }
+      30%       { transform: scaleX(-1) rotateZ(3.5deg); }
+      70%       { transform: scaleX(-1) rotateZ(-2deg); }
     }
 
-    /* ── Petal canvas ── */
+    /* â”€â”€ Petal canvas â”€â”€ */
     #petal-canvas {
       position: fixed; inset: 0;
       pointer-events: none;
       z-index: 3;
     }
 
-    /* ── Nav ── */
+    /* â”€â”€ Nav â”€â”€ */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 50;
       display: flex; justify-content: center; align-items: center;
@@ -105,7 +105,7 @@
     }
     .nav-links a:hover { color: var(--pink); }
 
-    /* ── Hero ── */
+    /* â”€â”€ Hero â”€â”€ */
     #hero {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
@@ -157,7 +157,7 @@
     }
     .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
 
-    /* ── Sections — transparent so background shows through ── */
+    /* â”€â”€ Sections â€” transparent so background shows through â”€â”€ */
     section { padding: 5rem 1rem; position: relative; z-index: 4; background: transparent; }
     .container { max-width: 900px; margin: 0 auto; }
     .section-title {
@@ -170,7 +170,7 @@
     }
     .section-sub { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.95rem; }
 
-    /* ── About ── */
+    /* â”€â”€ About â”€â”€ */
     #about { background: transparent; }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
@@ -192,7 +192,7 @@
       margin-bottom: 2rem; font-style: italic; color: var(--muted);
     }
 
-    /* ── Research ── */
+    /* â”€â”€ Research â”€â”€ */
     #research { background: transparent; }
     .research-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem;
@@ -210,7 +210,7 @@
     .research-area { font-weight: 600; margin-bottom: 0.4rem; }
     .research-focus { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
 
-    /* ── Publications ── */
+    /* â”€â”€ Publications â”€â”€ */
     #publications { background: transparent; }
     .pub-card {
       background: var(--card); border: 1px solid rgba(139,92,246,0.15);
@@ -238,7 +238,7 @@
       color: var(--purple); border-radius: 9999px; padding: 0.3rem 0.9rem; font-size: 0.82rem;
     }
 
-    /* ── Skills ── */
+    /* â”€â”€ Skills â”€â”€ */
     #skills { background: transparent; }
     .skills-group { margin-bottom: 2rem; }
     .skills-group-title {
@@ -261,7 +261,7 @@
       background: linear-gradient(135deg, var(--pink), var(--purple));
     }
 
-    /* ── Projects ── */
+    /* â”€â”€ Projects â”€â”€ */
     #projects { background: transparent; }
     .projects-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem;
@@ -286,7 +286,7 @@
     .status-building { background: rgba(139,92,246,0.12); color: var(--purple); }
     .status-competing { background: rgba(6,182,212,0.12); color: var(--cyan); }
 
-    /* ── Connect ── */
+    /* â”€â”€ Connect â”€â”€ */
     #connect {
       background: transparent;
       text-align: center;
@@ -307,7 +307,7 @@
     .connect-link.telegram:hover { border-color: #2ca5e0; color: #2ca5e0; }
     .connect-link.instagram:hover{ border-color: #e4405f; color: #e4405f; }
 
-    /* ── Footer ── */
+    /* â”€â”€ Footer â”€â”€ */
     footer {
       background: var(--card); border-top: 1px solid rgba(139,92,246,0.1);
       text-align: center; padding: 2rem 1rem;
@@ -315,7 +315,7 @@
     }
     footer .heart { color: var(--pink); }
 
-    /* ── Scroll reveal ── */
+    /* â”€â”€ Scroll reveal â”€â”€ */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
@@ -327,154 +327,14 @@
 <!-- Dark overlay for text readability -->
 <div id="dark-overlay"></div>
 
-<!-- Left sakura branch (SVG overlay, CSS sway animation) -->
+<!-- Left sakura branch (SVG, fixed, CSS sway) -->
 <div id="branch-left" class="sakura-branch">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 450" width="480" height="450">
-  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M0,0 C35,45 75,90 110,118 C140,140 162,170 188,208 C215,248 255,278 312,308" stroke="#3a1520" stroke-width="11" opacity="0.9"/>
-    <path d="M100,112 C148,75 202,44 262,15"  stroke="#3a1520" stroke-width="7"   opacity="0.88"/>
-    <path d="M192,42  C218,22 242,8  268,-3"  stroke="#3a1520" stroke-width="4.5" opacity="0.85"/>
-    <path d="M228,28  C242,46 250,64 248,86"  stroke="#3a1520" stroke-width="3.5" opacity="0.8"/>
-    <path d="M168,186 C215,150 268,122 332,106" stroke="#3a1520" stroke-width="6" opacity="0.85"/>
-    <path d="M272,118 C300,100 325,88 352,82"  stroke="#3a1520" stroke-width="3.5" opacity="0.8"/>
-    <path d="M288,288 C320,268 358,254 398,248" stroke="#3a1520" stroke-width="5" opacity="0.82"/>
-  </g>
-  <!-- tip of branch1 -->
-  <g opacity="0.88">
-    <circle cx="260" cy="13"  r="9"   fill="rgba(255,162,198,0.82)"/>
-    <circle cx="272" cy="6"   r="8"   fill="rgba(255,185,215,0.78)"/>
-    <circle cx="250" cy="5"   r="8"   fill="rgba(255,145,185,0.78)"/>
-    <circle cx="278" cy="18"  r="7"   fill="rgba(255,208,228,0.73)"/>
-    <circle cx="246" cy="20"  r="7"   fill="rgba(255,175,210,0.78)"/>
-    <circle cx="263" cy="11"  r="3.5" fill="rgba(255,238,248,0.95)"/>
-  </g>
-  <!-- twig A tip -->
-  <g opacity="0.85">
-    <circle cx="268" cy="-2"  r="8"   fill="rgba(255,162,198,0.82)"/>
-    <circle cx="278" cy="-8"  r="7.5" fill="rgba(255,185,215,0.78)"/>
-    <circle cx="258" cy="-9"  r="7"   fill="rgba(255,145,185,0.78)"/>
-    <circle cx="275" cy="6"   r="6.5" fill="rgba(255,208,228,0.73)"/>
-    <circle cx="269" cy="-1"  r="3"   fill="rgba(255,238,248,0.95)"/>
-  </g>
-  <!-- twig B tip -->
-  <g opacity="0.82">
-    <circle cx="248" cy="84"  r="7.5" fill="rgba(255,162,198,0.78)"/>
-    <circle cx="258" cy="78"  r="7"   fill="rgba(255,185,215,0.73)"/>
-    <circle cx="238" cy="79"  r="7"   fill="rgba(255,145,185,0.73)"/>
-    <circle cx="253" cy="93"  r="6"   fill="rgba(255,208,228,0.68)"/>
-    <circle cx="249" cy="82"  r="3"   fill="rgba(255,238,248,0.92)"/>
-  </g>
-  <!-- tip of branch2 -->
-  <g opacity="0.85">
-    <circle cx="332" cy="103" r="8.5" fill="rgba(255,162,198,0.82)"/>
-    <circle cx="345" cy="96"  r="7.5" fill="rgba(255,185,215,0.78)"/>
-    <circle cx="320" cy="98"  r="7.5" fill="rgba(255,145,185,0.78)"/>
-    <circle cx="340" cy="114" r="7"   fill="rgba(255,208,228,0.73)"/>
-    <circle cx="322" cy="112" r="6.5" fill="rgba(255,175,210,0.73)"/>
-    <circle cx="334" cy="102" r="3.5" fill="rgba(255,238,248,0.95)"/>
-  </g>
-  <!-- twig C tip -->
-  <g opacity="0.8">
-    <circle cx="352" cy="80"  r="8"   fill="rgba(255,162,198,0.78)"/>
-    <circle cx="363" cy="74"  r="7"   fill="rgba(255,185,215,0.73)"/>
-    <circle cx="342" cy="76"  r="7"   fill="rgba(255,145,185,0.73)"/>
-    <circle cx="358" cy="90"  r="6"   fill="rgba(255,208,228,0.68)"/>
-    <circle cx="354" cy="78"  r="3"   fill="rgba(255,238,248,0.9)"/>
-  </g>
-  <!-- mid-branch scatter -->
-  <g opacity="0.72">
-    <circle cx="194" cy="40"  r="7"   fill="rgba(255,162,198,0.72)"/>
-    <circle cx="204" cy="34"  r="6"   fill="rgba(255,185,215,0.68)"/>
-    <circle cx="184" cy="36"  r="6"   fill="rgba(255,145,185,0.68)"/>
-    <circle cx="198" cy="48"  r="5.5" fill="rgba(255,208,228,0.63)"/>
-    <circle cx="196" cy="38"  r="2.5" fill="rgba(255,238,248,0.85)"/>
-  </g>
-  <!-- side branch tip -->
-  <g opacity="0.72">
-    <circle cx="397" cy="246" r="7.5" fill="rgba(255,162,198,0.72)"/>
-    <circle cx="408" cy="240" r="7"   fill="rgba(255,185,215,0.68)"/>
-    <circle cx="387" cy="242" r="7"   fill="rgba(255,145,185,0.68)"/>
-    <circle cx="403" cy="256" r="6"   fill="rgba(255,208,228,0.63)"/>
-    <circle cx="399" cy="244" r="3"   fill="rgba(255,238,248,0.85)"/>
-  </g>
-  <!-- scattered tiny buds -->
-  <circle cx="148" cy="158" r="5"   fill="rgba(255,162,198,0.5)"/>
-  <circle cx="155" cy="152" r="4"   fill="rgba(255,210,230,0.45)"/>
-  <circle cx="228" cy="238" r="5"   fill="rgba(255,162,198,0.48)"/>
-  <circle cx="238" cy="232" r="4"   fill="rgba(255,210,230,0.42)"/>
-</svg>
+  <img src="sakura_branch.svg" width="580" height="500" alt="" />
 </div>
 
-<!-- Right sakura branch (horizontally mirrored via SVG transform) -->
+<!-- Right sakura branch (mirrored via scaleX in keyframes) -->
 <div id="branch-right" class="sakura-branch">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 450" width="480" height="450">
-  <g transform="translate(480,0) scale(-1,1)">
-    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M0,0 C35,45 75,90 110,118 C140,140 162,170 188,208 C215,248 255,278 312,308" stroke="#3a1520" stroke-width="11" opacity="0.9"/>
-      <path d="M100,112 C148,75 202,44 262,15"  stroke="#3a1520" stroke-width="7"   opacity="0.88"/>
-      <path d="M192,42  C218,22 242,8  268,-3"  stroke="#3a1520" stroke-width="4.5" opacity="0.85"/>
-      <path d="M228,28  C242,46 250,64 248,86"  stroke="#3a1520" stroke-width="3.5" opacity="0.8"/>
-      <path d="M168,186 C215,150 268,122 332,106" stroke="#3a1520" stroke-width="6" opacity="0.85"/>
-      <path d="M272,118 C300,100 325,88 352,82"  stroke="#3a1520" stroke-width="3.5" opacity="0.8"/>
-      <path d="M288,288 C320,268 358,254 398,248" stroke="#3a1520" stroke-width="5" opacity="0.82"/>
-    </g>
-    <g opacity="0.88">
-      <circle cx="260" cy="13"  r="9"   fill="rgba(255,162,198,0.82)"/>
-      <circle cx="272" cy="6"   r="8"   fill="rgba(255,185,215,0.78)"/>
-      <circle cx="250" cy="5"   r="8"   fill="rgba(255,145,185,0.78)"/>
-      <circle cx="278" cy="18"  r="7"   fill="rgba(255,208,228,0.73)"/>
-      <circle cx="246" cy="20"  r="7"   fill="rgba(255,175,210,0.78)"/>
-      <circle cx="263" cy="11"  r="3.5" fill="rgba(255,238,248,0.95)"/>
-    </g>
-    <g opacity="0.85">
-      <circle cx="268" cy="-2"  r="8"   fill="rgba(255,162,198,0.82)"/>
-      <circle cx="278" cy="-8"  r="7.5" fill="rgba(255,185,215,0.78)"/>
-      <circle cx="258" cy="-9"  r="7"   fill="rgba(255,145,185,0.78)"/>
-      <circle cx="275" cy="6"   r="6.5" fill="rgba(255,208,228,0.73)"/>
-      <circle cx="269" cy="-1"  r="3"   fill="rgba(255,238,248,0.95)"/>
-    </g>
-    <g opacity="0.82">
-      <circle cx="248" cy="84"  r="7.5" fill="rgba(255,162,198,0.78)"/>
-      <circle cx="258" cy="78"  r="7"   fill="rgba(255,185,215,0.73)"/>
-      <circle cx="238" cy="79"  r="7"   fill="rgba(255,145,185,0.73)"/>
-      <circle cx="253" cy="93"  r="6"   fill="rgba(255,208,228,0.68)"/>
-      <circle cx="249" cy="82"  r="3"   fill="rgba(255,238,248,0.92)"/>
-    </g>
-    <g opacity="0.85">
-      <circle cx="332" cy="103" r="8.5" fill="rgba(255,162,198,0.82)"/>
-      <circle cx="345" cy="96"  r="7.5" fill="rgba(255,185,215,0.78)"/>
-      <circle cx="320" cy="98"  r="7.5" fill="rgba(255,145,185,0.78)"/>
-      <circle cx="340" cy="114" r="7"   fill="rgba(255,208,228,0.73)"/>
-      <circle cx="322" cy="112" r="6.5" fill="rgba(255,175,210,0.73)"/>
-      <circle cx="334" cy="102" r="3.5" fill="rgba(255,238,248,0.95)"/>
-    </g>
-    <g opacity="0.8">
-      <circle cx="352" cy="80"  r="8"   fill="rgba(255,162,198,0.78)"/>
-      <circle cx="363" cy="74"  r="7"   fill="rgba(255,185,215,0.73)"/>
-      <circle cx="342" cy="76"  r="7"   fill="rgba(255,145,185,0.73)"/>
-      <circle cx="358" cy="90"  r="6"   fill="rgba(255,208,228,0.68)"/>
-      <circle cx="354" cy="78"  r="3"   fill="rgba(255,238,248,0.9)"/>
-    </g>
-    <g opacity="0.72">
-      <circle cx="194" cy="40"  r="7"   fill="rgba(255,162,198,0.72)"/>
-      <circle cx="204" cy="34"  r="6"   fill="rgba(255,185,215,0.68)"/>
-      <circle cx="184" cy="36"  r="6"   fill="rgba(255,145,185,0.68)"/>
-      <circle cx="198" cy="48"  r="5.5" fill="rgba(255,208,228,0.63)"/>
-      <circle cx="196" cy="38"  r="2.5" fill="rgba(255,238,248,0.85)"/>
-    </g>
-    <g opacity="0.72">
-      <circle cx="397" cy="246" r="7.5" fill="rgba(255,162,198,0.72)"/>
-      <circle cx="408" cy="240" r="7"   fill="rgba(255,185,215,0.68)"/>
-      <circle cx="387" cy="242" r="7"   fill="rgba(255,145,185,0.68)"/>
-      <circle cx="403" cy="256" r="6"   fill="rgba(255,208,228,0.63)"/>
-      <circle cx="399" cy="244" r="3"   fill="rgba(255,238,248,0.85)"/>
-    </g>
-    <circle cx="148" cy="158" r="5"   fill="rgba(255,162,198,0.5)"/>
-    <circle cx="155" cy="152" r="4"   fill="rgba(255,210,230,0.45)"/>
-    <circle cx="228" cy="238" r="5"   fill="rgba(255,162,198,0.48)"/>
-    <circle cx="238" cy="232" r="4"   fill="rgba(255,210,230,0.42)"/>
-  </g>
-</svg>
+  <img src="sakura_branch.svg" width="580" height="500" alt="" />
 </div>
 
 <!-- Petal canvas (falling petals animation) -->
@@ -495,9 +355,9 @@
 <!-- Hero -->
 <section id="hero">
   <div class="hero-content">
-    <div class="hero-badge">🌸 Open to PhD opportunities</div>
+    <div class="hero-badge">ðŸŒ¸ Open to PhD opportunities</div>
     <h1 class="hero-name">Nam Vuong Duy Hai</h1>
-    <p class="hero-alias">aka <span>Izumi</span> · NonomiyaIzumi</p>
+    <p class="hero-alias">aka <span>Izumi</span> Â· NonomiyaIzumi</p>
     <div class="typing-wrapper">
       <span class="typing" id="typing-text"></span>
     </div>
@@ -511,42 +371,42 @@
 <!-- About -->
 <section id="about">
   <div class="container reveal">
-    <h2 class="section-title">🌸 About Me</h2>
-    <p class="section-sub">AI Researcher · Hanoi, Vietnam</p>
+    <h2 class="section-title">ðŸŒ¸ About Me</h2>
+    <p class="section-sub">AI Researcher Â· Hanoi, Vietnam</p>
     <div class="quote-block">
       "Intelligence without wisdom is just computation."
     </div>
     <div class="about-grid">
       <div class="about-item">
-        <span class="about-icon">🎓</span>
+        <span class="about-icon">ðŸŽ“</span>
         <div>
           <div class="about-label">Education</div>
           <div class="about-value">B.Sc. Computer Science<br/>
-            <a href="https://fpt.edu.vn" target="_blank">FPT University</a> · Data Science & AI · GPA 3.1/4.0
+            <a href="https://fpt.edu.vn" target="_blank">FPT University</a> Â· Data Science & AI Â· GPA 3.1/4.0
           </div>
         </div>
       </div>
       <div class="about-item">
-        <span class="about-icon">🔬</span>
+        <span class="about-icon">ðŸ”¬</span>
         <div>
           <div class="about-label">Position</div>
           <div class="about-value">Research Assistant<br/>
-            <a href="https://tvluong.wordpress.com/" target="_blank">Business AI Lab</a> · NEU
+            <a href="https://tvluong.wordpress.com/" target="_blank">Business AI Lab</a> Â· NEU
           </div>
         </div>
       </div>
       <div class="about-item">
-        <span class="about-icon">🌐</span>
+        <span class="about-icon">ðŸŒ</span>
         <div>
           <div class="about-label">Languages</div>
-          <div class="about-value">Vietnamese 🇻🇳 · English (IELTS 6.0) · Japanese 🇯🇵 (JLPT N5)</div>
+          <div class="about-value">Vietnamese ðŸ‡»ðŸ‡³ Â· English (IELTS 6.0) Â· Japanese ðŸ‡¯ðŸ‡µ (JLPT N5)</div>
         </div>
       </div>
       <div class="about-item">
-        <span class="about-icon">🎯</span>
+        <span class="about-icon">ðŸŽ¯</span>
         <div>
           <div class="about-label">Goal</div>
-          <div class="about-value">PhD in AI — XAI · Multimodal Learning · Agentic LLM Systems</div>
+          <div class="about-value">PhD in AI â€” XAI Â· Multimodal Learning Â· Agentic LLM Systems</div>
         </div>
       </div>
     </div>
@@ -556,26 +416,26 @@
 <!-- Research -->
 <section id="research">
   <div class="container reveal">
-    <h2 class="section-title">🔭 Research Interests</h2>
+    <h2 class="section-title">ðŸ”­ Research Interests</h2>
     <p class="section-sub">Areas I'm actively working on and thinking about</p>
     <div class="research-grid">
       <div class="research-card">
-        <div class="research-emoji">🧠</div>
+        <div class="research-emoji">ðŸ§ </div>
         <div class="research-area">Explainable AI</div>
         <div class="research-focus">Multimodal XAI for Healthcare & Business/Economics decision support</div>
       </div>
       <div class="research-card">
-        <div class="research-emoji">🎭</div>
+        <div class="research-emoji">ðŸŽ­</div>
         <div class="research-area">Multimodal Learning</div>
         <div class="research-focus">Vision-Language Models, ECG + LLM fusion for clinical tasks</div>
       </div>
       <div class="research-card">
-        <div class="research-emoji">🤖</div>
+        <div class="research-emoji">ðŸ¤–</div>
         <div class="research-area">Multi-agent Systems</div>
         <div class="research-focus">Agentic LLM pipelines, JEPA-based predictive representation learning</div>
       </div>
       <div class="research-card">
-        <div class="research-emoji">🏥</div>
+        <div class="research-emoji">ðŸ¥</div>
         <div class="research-area">AI for Healthcare</div>
         <div class="research-focus">ECG cardiac analysis, clinical decision support systems</div>
       </div>
@@ -586,33 +446,33 @@
 <!-- Publications -->
 <section id="publications">
   <div class="container reveal">
-    <h2 class="section-title">📚 Publications</h2>
+    <h2 class="section-title">ðŸ“š Publications</h2>
     <p class="section-sub">Conference papers, journals, and academic service</p>
 
     <div class="pub-card">
       <div>
         <span class="pub-label">[C.1] Conference</span>
-        <span class="pub-status">✅ Accepted</span>
+        <span class="pub-status">âœ… Accepted</span>
       </div>
       <div class="pub-title">Enhancing Explainable Cardiac Diagnosis with Guide-Grounded Multimodal LLMs</div>
       <div class="pub-authors">Hai-Nam Vuong Duy, Trang Mai Xuan, Luong Thien Van</div>
-      <div class="pub-venue">📍 CITA 2026 · 15th Conference on Information Technology and its Applications · Springer</div>
+      <div class="pub-venue">ðŸ“ CITA 2026 Â· 15th Conference on Information Technology and its Applications Â· Springer</div>
     </div>
 
     <div class="pub-card">
       <div>
         <span class="pub-label">[J.1] Journal</span>
-        <span class="pub-status" style="background:rgba(139,92,246,0.12);color:var(--purple)">📝 In Progress</span>
+        <span class="pub-status" style="background:rgba(139,92,246,0.12);color:var(--purple)">ðŸ“ In Progress</span>
       </div>
       <div class="pub-title">Enhance Explainable AI using MultiAgent System</div>
       <div class="pub-authors">Nam Vuong Duy Hai, Trang Xuan Mai, Van Luong Thien</div>
-      <div class="pub-venue">📝 Manuscript in preparation</div>
+      <div class="pub-venue">ðŸ“ Manuscript in preparation</div>
     </div>
 
     <h3 style="margin-top:2rem;font-size:1rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em">Academic Service</h3>
     <div class="service-list">
-      <span class="service-badge">Reviewer · FJCAI 2026</span>
-      <span class="service-badge">Reviewer · CITA 2026 (Springer)</span>
+      <span class="service-badge">Reviewer Â· FJCAI 2026</span>
+      <span class="service-badge">Reviewer Â· CITA 2026 (Springer)</span>
     </div>
   </div>
 </section>
@@ -620,7 +480,7 @@
 <!-- Skills -->
 <section id="skills">
   <div class="container reveal">
-    <h2 class="section-title">🛠 Tech Stack</h2>
+    <h2 class="section-title">ðŸ›  Tech Stack</h2>
     <p class="section-sub">Tools and technologies I work with regularly</p>
 
     <div class="skills-group">
@@ -660,26 +520,26 @@
 <!-- Projects -->
 <section id="projects">
   <div class="container reveal">
-    <h2 class="section-title">🚀 Current Projects</h2>
+    <h2 class="section-title">ðŸš€ Current Projects</h2>
     <p class="section-sub">What I'm actively building and researching</p>
     <div class="projects-grid">
       <div class="project-card">
-        <div class="project-icon">🏥</div>
+        <div class="project-icon">ðŸ¥</div>
         <div class="project-name">XAI for ECG</div>
         <div class="project-desc">Explainable cardiac diagnosis with Guide-Grounded Multimodal LLMs. Research at Business AI Lab, NEU.</div>
-        <span class="project-status status-research">🔬 Research</span>
+        <span class="project-status status-research">ðŸ”¬ Research</span>
       </div>
       <div class="project-card">
-        <div class="project-icon">📚</div>
+        <div class="project-icon">ðŸ“š</div>
         <div class="project-name">EduVision</div>
         <div class="project-desc">AI-powered educational platform with intelligent features for personalized learning experiences.</div>
-        <span class="project-status status-building">🏗️ Building</span>
+        <span class="project-status status-building">ðŸ—ï¸ Building</span>
       </div>
       <div class="project-card">
-        <div class="project-icon">🌊</div>
+        <div class="project-icon">ðŸŒŠ</div>
         <div class="project-name">Flood Detection</div>
         <div class="project-desc">Image retrieval system for disaster response classification. DPL302m coursework / Kaggle competition.</div>
-        <span class="project-status status-competing">📊 Competing</span>
+        <span class="project-status status-competing">ðŸ“Š Competing</span>
       </div>
     </div>
   </div>
@@ -688,7 +548,7 @@
 <!-- Connect -->
 <section id="connect">
   <div class="container reveal">
-    <h2 class="section-title">🌸 Connect</h2>
+    <h2 class="section-title">ðŸŒ¸ Connect</h2>
     <p class="section-sub">I'm open to research collaborations, PhD opportunities, and interesting conversations</p>
     <div class="connect-links">
       <a href="https://github.com/NonomiyaIzumi" target="_blank" class="connect-link github">
@@ -716,11 +576,11 @@
 </section>
 
 <footer>
-  <p>Built with <span class="heart">♥</span> by Nam Vuong Duy Hai · 2026</p>
+  <p>Built with <span class="heart">â™¥</span> by Nam Vuong Duy Hai Â· 2026</p>
 </footer>
 
 <script>
-// ── Falling petals (canvas) ──────────────────────────────────────
+// â”€â”€ Falling petals (canvas) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const canvas = document.getElementById('petal-canvas');
 const ctx    = canvas.getContext('2d');
 
@@ -779,12 +639,12 @@ function animate() {
 }
 animate();
 
-// ── Typing animation ─────────────────────────────────────────────
+// â”€â”€ Typing animation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const phrases = [
-  'Aspiring AI Researcher 🌸',
+  'Aspiring AI Researcher ðŸŒ¸',
   'Multimodal | XAI | Multi-agent Systems',
-  'PhD Seeker 🎯',
-  'Building Explainable AI for Healthcare 🏥',
+  'PhD Seeker ðŸŽ¯',
+  'Building Explainable AI for Healthcare ðŸ¥',
 ];
 let pi = 0, ci = 0, deleting = false;
 const typingEl = document.getElementById('typing-text');
@@ -799,7 +659,7 @@ function type() {
 }
 type();
 
-// ── Scroll reveal ─────────────────────────────────────────────────
+// â”€â”€ Scroll reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const io = new IntersectionObserver(
   entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
   { threshold: 0.1 }
